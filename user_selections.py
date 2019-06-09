@@ -2,7 +2,7 @@ import re
 import random
 
 def get_permission():
-    
+    """Get user's permission to play game; if not, terminate"""
     print("Welcome to Mystery Word! When prompted for input, please type the first letter of your choice.")
     player_consent_str = input("Would you like to guess the word I'm thinking of? Please type (Y)es or (N)o: ").upper()
 
@@ -56,15 +56,16 @@ def get_difficulty(file):
 
     else: 
         print("Sorry, I don't understand. Please try again: ")
+        return get_difficulty(file)
 
     with open(file, "r") as chosen_file:
         word_list = [
             word.upper().strip()
             for word in chosen_file.readlines()
             if len(word.strip()) in char_range
-                word = random.choice(word_list)
         ]
-    print(word_list)
+    word = random.choice(word_list)
+    print(word)
     return word_list
 
 get_permission()
