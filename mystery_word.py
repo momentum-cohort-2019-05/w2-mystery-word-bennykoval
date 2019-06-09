@@ -1,11 +1,9 @@
 import user_selections 
 
-def restart(get_permission):
-
 def play_game(word):
-    guesses = ""
     chances: 8
-
+    guesses = ""
+    
     while chances > 0:
         failed = 0
 
@@ -21,4 +19,13 @@ def play_game(word):
 
             guesses = input("Guess a letter: ")
             total_guesses += guesses
+
+            if guesses not in word:
+                chances -= 1
+                print(chances, " more guesses remaining!")
+
+                if chances == 0:
+                    print(word, " was your word. Sorry!")
+                    get_permission()
+
                 
