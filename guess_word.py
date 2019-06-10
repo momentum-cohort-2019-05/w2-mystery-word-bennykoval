@@ -25,15 +25,13 @@ def get_edition():
 
     if edition_choice_str == "C":
         chosen_file = "common_words.txt"
-        return get_difficulty(chosen_file)
     
     if edition_choice_str == "A":
         chosen_file = "archaic_words.txt"
-        return get_difficulty(chosen_file)
     
     if edition_choice_str == "P":
         chosen_file = "pokemon_edition.txt"
-        return get_difficulty(chosen_file)
+    return get_difficulty(chosen_file)
 
     if edition_choice_str is not edition_choice_list:
         print("We do not have that edition in stock yet. Try another for now: ")
@@ -43,18 +41,22 @@ def play_game(word):
     """Compare guesses to word, display chances left, display win/loss"""
     chances = 8
     display_guess = ""
+    wrong_guess = ""
 
     letter = [*word]
     #format_underscore = ("_" * len(letter))
     
-    for letter in word:
-        guess = input("Guess a letter: ").upper()
+    while chances > 0:
+
+        for letter in word:
+            guess = input("Guess a letter: ").upper()
 
         if letter in guess:
             display_guess += guess
             (print_word(word, display_guess))
             
         if letter not in guess:
+            wrong_guess += guess
             (print_word(word, display_guess))
             chances -= 1
             print(chances, " more guesses remaining!")
