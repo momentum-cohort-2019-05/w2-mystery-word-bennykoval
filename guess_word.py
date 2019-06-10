@@ -40,8 +40,10 @@ def get_edition():
         return get_edition()
 
 def play_game(word):
+    """Compare guesses to word, display chances left, display win/loss"""
     chances = 8
     display_guess = ""
+
     letter = [*word]
     #format_underscore = ("_" * len(letter))
     
@@ -50,13 +52,12 @@ def play_game(word):
 
         if letter in guess:
             display_guess += guess
-            print(print_word(word, display_guess))
+            (print_word(word, display_guess))
             
         if letter not in guess:
-            print(print_word(word, display_guess))
-
-        chances -= 1
-        print(chances, " more guesses remaining!")
+            (print_word(word, display_guess))
+            chances -= 1
+            print(chances, " more guesses remaining!")
 
         if chances == 0:
             print(word, " was your word. Sorry!")
