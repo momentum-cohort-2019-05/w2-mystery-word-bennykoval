@@ -43,27 +43,27 @@ def play_game(word):
     chances = 8
     display_guess = ""
     letter = [*word]
-    format_underscore = ("_" * len(letter))
+    #format_underscore = ("_" * len(letter))
     
     for letter in word:
         guess = input("Guess a letter: ").upper()
 
         if letter in guess:
             display_guess += guess
-            print(display_guess, format_underscore)
+            print(print_word(word, display_guess))
             
         if letter not in guess:
-            print(display_guess, format_underscore)
+            print(print_word(word, display_guess))
 
         chances -= 1
         print(chances, " more guesses remaining!")
-            
-        if word == display_guess:
-            print("You did it!")
-            return get_permission()
 
         if chances == 0:
             print(word, " was your word. Sorry!")
+            return get_permission()
+
+        if word == display_guess:
+            print("You did it!")
             return get_permission()
 
 #def print_word(letter, guess):
@@ -102,5 +102,17 @@ def get_difficulty(file):
     word = random.choice(word_list)
     print(word)
     return play_game(word)
+
+def print_word(word, guesses):
+    output_letters = []
+    for letter in word:
+        output_letters.append(display_letter(letter, guesses))
+    print(" ".join(output_letters))
+
+def display_letter(letter, guesses):
+    if letter in guesses:
+        return letter
+    else:
+        return "_"
 
 get_permission()
