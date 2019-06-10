@@ -66,6 +66,14 @@ def play_game(word):
             print(word, " was your word. Sorry!")
             return get_permission()
 
+#def print_word(letter, guess):
+    #if letter in guess:
+        #return letter
+    #else:
+        #return "_"
+#[print_word(letter, display_guess)
+ #for letter in word]
+
 def get_difficulty(file):
     """Get user difficulty choice, list letter range in accordnance"""
     level_difficulty_str = input("Choose a difficulty level: (E)asy, (M)edium, or (H)ard? ").upper() 
