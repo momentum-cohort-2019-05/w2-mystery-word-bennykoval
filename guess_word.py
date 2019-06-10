@@ -25,13 +25,15 @@ def get_edition():
 
     if edition_choice_str == "C":
         chosen_file = "common_words.txt"
+        return get_difficulty(chosen_file)
     
     if edition_choice_str == "A":
         chosen_file = "archaic_words.txt"
+        return get_difficulty(chosen_file)
     
     if edition_choice_str == "P":
         chosen_file = "pokemon_edition.txt"
-    return get_difficulty(chosen_file)
+        return get_difficulty(chosen_file)
 
     if edition_choice_str is not edition_choice_list:
         print("We do not have that edition in stock yet. Try another for now: ")
@@ -40,23 +42,28 @@ def get_edition():
 def play_game(word):
     """Compare guesses to word, display chances left, display win/loss"""
     chances = 8
-    display_guess = ""
-    wrong_guess = ""
+    display_guess = []
+    wrong_guess = []
 
-    letter = [*word]
-    #format_underscore = ("_" * len(letter))
-    
+    letter_list = [*word]
+    print(letter_list)
+    # format_underscore = ("_" * len(letter))
+    #bananas 
+    #letter_list = [*"bananas"]
+    #['b', 'a', 'n', 'a', 'n', 'a', 's']
+    #chances = 8
+
     while chances > 0:
 
-        for letter in word:
-            guess = input("Guess a letter: ").upper()
+        guess = input("Guess a letter: ").upper()
 
-        if letter in guess:
-            display_guess += guess
-            (print_word(word, display_guess))
+        if guess in letter_list:
+            display_guess.append(guess)
+            print("display guess: ", display_guess)
+            print("guess: ", guess)
             
-        if letter not in guess:
-            wrong_guess += guess
+        else:
+            wrong_guess.append(guess)
             (print_word(word, display_guess))
             chances -= 1
             print(chances, " more guesses remaining!")
@@ -65,7 +72,7 @@ def play_game(word):
             print(word, " was your word. Sorry!")
             return get_permission()
 
-        if word == display_guess:
+        elif word == display_guess:
             print("You did it!")
             return get_permission()
 
@@ -106,14 +113,14 @@ def get_difficulty(file):
     print(word)
     return play_game(word)
 
-def print_word(word, guesses):
+def print_word(word, display_guess):
     output_letters = []
     for letter in word:
-        output_letters.append(display_letter(letter, guesses))
+        output_letters.append(display_letter(letter, display_guess))
     print(" ".join(output_letters))
 
-def display_letter(letter, guesses):
-    if letter in guesses:
+def display_letter(letter, display_guess):
+    if letter in display_guess:
         return letter
     else:
         return "_"
