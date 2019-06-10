@@ -59,8 +59,7 @@ def play_game(word):
 
         if guess in letter_list:
             display_guess.append(guess)
-            print("display guess: ", display_guess)
-            print("guess: ", guess)
+            (print_word(word, display_guess))
             
         else:
             wrong_guess.append(guess)
@@ -72,7 +71,7 @@ def play_game(word):
             print(word, " was your word. Sorry!")
             return get_permission()
 
-        elif word == display_guess:
+        elif letter_list == display_guess:
             print("You did it!")
             return get_permission()
 
