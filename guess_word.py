@@ -46,7 +46,6 @@ def play_game(word):
     wrong_guess = []
 
     letter_list = [*word]
-    print(letter_list)
     # format_underscore = ("_" * len(letter))
     #bananas 
     #letter_list = [*"bananas"]
@@ -71,7 +70,7 @@ def play_game(word):
             print(word, " was your word. Sorry!")
             return get_permission()
 
-        elif letter_list == display_guess:
+        elif letter_list == display_guess or letter_list !== "_":
             print("You did it!")
             return get_permission()
 
@@ -109,7 +108,6 @@ def get_difficulty(file):
             if len(word.strip()) in letter_range
         ]
     word = random.choice(word_list)
-    print(word)
     return play_game(word)
 
 def print_word(word, display_guess):
