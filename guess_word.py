@@ -46,11 +46,6 @@ def play_game(word):
     wrong_guess = []
 
     letter_list = [*word]
-    # format_underscore = ("_" * len(letter))
-    #bananas 
-    #letter_list = [*"bananas"]
-    #['b', 'a', 'n', 'a', 'n', 'a', 's']
-    #chances = 8
 
     while chances > 0:
 
@@ -58,29 +53,21 @@ def play_game(word):
 
         if guess in letter_list:
             display_guess.append(guess)
-            (print_word(word, display_guess))
+            print(print_word(word, display_guess))
             
         else:
             wrong_guess.append(guess)
-            (print_word(word, display_guess))
+            print(print_word(word, display_guess))
             chances -= 1
             print(chances, " more guesses remaining!")
+
+        if print_word(word, display_guess) == word:
+            print("You got it!")
+            return get_permission()
 
         if chances == 0:
             print(word, " was your word. Sorry!")
             return get_permission()
-
-        elif letter_list == display_guess or letter_list !== "_":
-            print("You did it!")
-            return get_permission()
-
-#def print_word(letter, guess):
-    #if letter in guess:
-        #return letter
-    #else:
-        #return "_"
-#[print_word(letter, display_guess)
- #for letter in word]
 
 def get_difficulty(file):
     """Get user difficulty choice, list letter range in accordnance"""
@@ -114,7 +101,7 @@ def print_word(word, display_guess):
     output_letters = []
     for letter in word:
         output_letters.append(display_letter(letter, display_guess))
-    print(" ".join(output_letters))
+    return("".join(output_letters))
 
 def display_letter(letter, display_guess):
     if letter in display_guess:
