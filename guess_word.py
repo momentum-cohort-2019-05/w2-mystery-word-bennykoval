@@ -44,8 +44,10 @@ def play_game(word):
     chances = 8
     display_guess = []
     wrong_guess = []
-
     letter_list = [*word]
+    word_with_spaces = word.replace("", " ")
+    word_stripped_and_with_spaces = word_with_spaces.strip()
+    print(word_with_spaces)
 
     while chances > 0:
 
@@ -61,7 +63,7 @@ def play_game(word):
             chances -= 1
             print(chances, " more guesses remaining!")
 
-        if print_word(word, display_guess) == word:
+        if print_word(word, display_guess) == word_stripped_and_with_spaces:
             print("You got it!")
             return get_permission()
 
@@ -101,7 +103,7 @@ def print_word(word, display_guess):
     output_letters = []
     for letter in word:
         output_letters.append(display_letter(letter, display_guess))
-    return("".join(output_letters))
+    return(" ".join(output_letters))
 
 def display_letter(letter, display_guess):
     if letter in display_guess:
