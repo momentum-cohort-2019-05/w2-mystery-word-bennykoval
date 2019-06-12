@@ -47,7 +47,6 @@ def play_game(word):
     letter_list = [*word]
     word_with_spaces = word.replace("", " ")
     word_stripped_and_with_spaces = word_with_spaces.strip()
-    print(word_with_spaces)
 
     while chances > 0:
 
